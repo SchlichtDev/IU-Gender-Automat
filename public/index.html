@@ -1,30 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Kleiderspende registrieren</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Start</a></li>
+        <li><a href="/donations">Spendenliste</a></li>
+      </ul>
+    </nav>
   </header>
+
   <main>
     <h1>Kleiderspende registrieren</h1>
     <form action="/register" method="post">
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name" required><br>
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name" required><br>
 
-    <label for="email">E-Mail:</label><br>
-    <input type="email" id="email" name="email" required><br>
+      <label for="email">E-Mail:</label><br>
+      <input type="email" id="email" name="email" required><br>
 
-    <label for="items">Beschreibung der Kleidung:</label><br>
-    <textarea id="items" name="items" required></textarea><br>
+      <label for="items">Beschreibung der Kleidung:</label><br>
+      <textarea id="items" name="items" required></textarea><br>
 
-    <label for="region">Zielregion:</label><br>
-    <select id="region" name="region" required>
-      <option value="Region A">Region A</option>
-      <option value="Region B">Region B</option>
-      <option value="Region C">Region C</option>
-    </select><br>
+      <label for="region">Zielregion:</label><br>
+      <select id="region" name="region" required>
+        <option value="Region A">Region A</option>
+        <option value="Region B">Region B</option>
+        <option value="Region C">Region C</option>
+      </select><br>
 
-    <button type="submit">Spende registrieren</button>
-  </form>
+      <button type="submit">Spende registrieren</button>
     </form>
   </main>
+
   <footer>
-    <p>Impressum &amp; Datenschutzerklärung</p>
-    <p><a href="/impressum.html">Impressum</a> &amp; <a href="/datenschutz.html">Datenschutzerkl\xC3\xA4rung</a></p>
+    <p><a href="/impressum.html">Impressum</a> &amp; <a href="/datenschutz.html">Datenschutzerklärung</a></p>
   </footer>
 </body>
 </html>
