@@ -86,32 +86,32 @@
   </footer>
 
   <script>
-    fetch('../docs/donations.json')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Datei konnte nicht geladen werden');
-        }
-        return response.json();
-      })
-      .then(data => {
-        const tbody = document.querySelector('#donationTable tbody');
-        data.forEach(entry => {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${entry.name}</td>
-            <td>${entry.email}</td>
-            <td>${entry.items}</td>
-            <td>${entry.region}</td>
-            <td>${new Date(entry.timestamp).toLocaleString('de-DE')}</td>
-          `;
-          tbody.appendChild(row);
-        });
-      })
-      .catch(error => {
-        console.error('Fehler beim Laden der donations.json:', error);
-        document.querySelector('#donationTable').insertAdjacentHTML('afterend',
-          '<p style="color: red;">Die Spendenliste konnte nicht geladen werden.</p>');
+  fetch('donations.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Datei konnte nicht geladen werden');
+      }
+      return response.json();
+    })
+    .then(data => {
+      const tbody = document.querySelector('#donationTable tbody');
+      data.forEach(entry => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${entry.name}</td>
+          <td>${entry.email}</td>
+          <td>${entry.items}</td>
+          <td>${entry.region}</td>
+          <td>${new Date(entry.timestamp).toLocaleString('de-DE')}</td>
+        `;
+        tbody.appendChild(row);
       });
-  </script>
+    })
+    .catch(error => {
+      console.error('Fehler beim Laden der donations.json:', error);
+      document.querySelector('#donationTable').insertAdjacentHTML('afterend',
+        '<p style="color: red;">Die Spendenliste konnte nicht geladen werden.</p>');
+    });
+</script>
 </body>
 </html>
