@@ -1,34 +1,166 @@
+﻿/* === Farbvariablen für konsistentes Farbschema im Projekt === */
+:root {
+    --primary: #4CAF50; /* Hauptfarbe (grün) für Buttons und Header */
+    --primary-dark: #388E3C; /* dunkleres Grün für Hover-Zustände */
+    --background: #f9f9f9; /* Standard-Hintergrundfarbe */
+    --text: #333; /* Haupttextfarbe */
+    --border: #ccc; /* Standardfarbe für Rahmen */
+}
+
+/* Grundlegende Formatierung für einheitliches Layout */
+* {
+    box-sizing: border-box;
+}
+
+/* Seitenlayout mit neutralem Hintergrund und guter Lesbarkeit */
 body {
-  font-family: Arial, sans-serif;
-  margin: 2em;
-  margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
 }
+
+/* Header und Footer mit Hauptfarbe, um sie visuell hervorzuheben */
 header, footer {
-  background-color: #f0f0f0;
-  padding: 1em 2em;
+    background-color: var(--primary);
+    color: white;
+    padding: 1em 2em;
 }
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 1em;
-}
-main {
-  padding: 2em;
-}
+
+/* Footer etwas dezenter gestalten */
 footer {
-  font-size: 0.8em;
-  text-align: center;
-  color: #666;
+    font-size: 0.85em;
+    text-align: center;
+    color: #e0e0e0;
 }
+
+/* Navigationsleiste horizontal mit Abstand zwischen den Elementen */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigationslinks: weiß, fett, ohne Unterstreichung */
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    nav a:hover {
+        text-decoration: underline; /* Unterstreichung als visuelle Rückmeldung */
+    }
+
+/* Hauptinhalt mit etwas Innenabstand */
+main {
+    padding: 2rem;
+}
+
+/* Logo und Titel nebeneinander, vertikal zentriert */
+.site-branding {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Logo responsive skalieren */
+.logo {
+    height: 80px;
+    width: auto;
+    display: block;
+}
+
+/* Projekttitel im Header optisch hervorheben */
+.title {
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+/* Formular im Zentrum mit abgerundeter Box und leichtem Schatten */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+
+/* Labels klar über den Eingabefeldern anzeigen */
 label {
-  font-weight: bold;
+    font-weight: bold;
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
 }
+
+/* Eingabefelder & Dropdowns im einheitlichen Stil */
 input, textarea, select {
-  width: 300px;
-  margin-bottom: 1em;
+    width: 100%;
+    max-width: 100%;
+    padding: 0.5em;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 1em;
+    font-size: 1em;
 }
+
+/* Textfelder flexibel in der Höhe */
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Buttons farblich hervorgehoben und interaktiv */
 button {
-  padding: 0.5em 1em;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75em 1.5em;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+    button:hover {
+        background-color: var(--primary-dark); /* dunkler beim Hover für Rückmeldung */
+    }
+
+/* Mobile Ansicht: Navigation & Inhalte besser an kleine Bildschirme anpassen */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .logo {
+        height: 60px;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    form {
+        padding: 1.5rem;
+    }
+}
+/* Radio‐Buttons nebeneinander anordnen und Abstand geben */
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+    .radio-group input[type="radio"] {
+        margin: 0; /* Entfernt den Browser‐Default‐Abstand */
+        width: auto; /* Kleine, runde Buttons behalten ihre Größe */
+    }

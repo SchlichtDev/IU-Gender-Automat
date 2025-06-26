@@ -1,124 +1,111 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Spendenliste – Kleiderspenden Registrierung</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
-    }
+    <meta charset="UTF-8">
+    <title>Spende erfolgreich – Kleiderspenden Registrierung</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Sicherstellen, dass Footer bei wenig Inhalt am unteren Rand bleibt */
+        html, body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
 
-    th, td {
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      text-align: left;
-    }
+        main {
+            flex: 1;
+            padding: 2rem;
+        }
 
-    th {
-      background-color: #f2f2f2;
-    }
+        ul#summary {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 2rem;
+        }
 
-    @media (max-width: 600px) {
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
+            ul#summary li {
+                margin-bottom: 0.5rem;
+            }
 
-      th {
-        display: none;
-      }
+        a.button-link {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 0.75em 1.5em;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
 
-      td {
-        position: relative;
-        padding-left: 50%;
-      }
-
-      td::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 45%;
-        padding-left: 1rem;
-        font-weight: bold;
-        white-space: nowrap;
-      }
-
-      td:nth-of-type(1)::before { content: "Name"; }
-      td:nth-of-type(2)::before { content: "E-Mail"; }
-      td:nth-of-type(3)::before { content: "Kleidung"; }
-      td:nth-of-type(4)::before { content: "Region"; }
-      td:nth-of-type(5)::before { content: "Datum"; }
-    }
-  </style>
+            a.button-link:hover {
+                background-color: var(--primary-dark);
+            }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="site-branding" style="display: flex; align-items: center; gap: 1rem;">
-      <a href="/">
-        <img src="images/logo.webp" alt="Logo Kleiderspenden" class="logo" style="height: 60px;">
-      </a>
-      <span class="title">IU Kleiderspenden Registrierung</span>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="/">Start</a></li>
-        <li><a href="/success.html">Spendenliste</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <h1>Spendenliste</h1>
-    <table id="donationTable">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>E-Mail</th>
-          <th>Kleidung</th>
-          <th>Region</th>
-          <th>Datum</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Daten werden hier per JavaScript eingefügt -->
-      </tbody>
-    </table>
-  </main>
+    <!-- Header mit Logo und Navigation -->
+    <header>
+        <div class="site-branding">
+            <a href="/"><img src="images/logo.jpg" alt="Logo Kleiderspenden" class="logo"></a>
+            <span class="title">IU Kleiderspenden Registrierung</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Start</a></li>
+                <li><a href="/success.html">Meine Spende</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <footer>
-    <p><a href="/impressum.html">Impressum</a> &amp; <a href="/datenschutz.html">Datenschutzerklärung</a></p>
-  </footer>
+    <!-- Hauptinhalt mit Dank und Zusammenfassung -->
+    <main>
+        <h1>Vielen Dank für Ihre Spende!</h1>
+        <p>Ihre Kleiderspende wurde erfolgreich registriert. Hier sind Ihre Angaben:</p>
 
-  <script>
-    // Holt die Daten aus donations.json (muss im selben Ordner wie success.html liegen)
-    fetch('donations.json')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Datei konnte nicht geladen werden');
+        <!-- Zusammenfassung der Spendeninformationen -->
+        <ul id="summary">
+            <!-- wird per JavaScript generiert -->
+        </ul>
+
+        <!-- Zurück zur Startseite -->
+        <a class="button-link" href="/">Zurück zur Startseite</a>
+    </main>
+
+    <!-- Footer bleibt am Seitenende, auch wenn wenig Inhalt -->
+    <footer>
+        <p><a href="/impressum.html">Impressum</a> &amp; <a href="/datenschutz.html">Datenschutzerklärung</a></p>
+    </footer>
+
+    <!-- Script zur Anzeige der übermittelten Spendedaten -->
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const summary = document.getElementById('summary');
+
+        // Spendedaten aus URL extrahieren
+        const date = params.get('timestamp');
+        const formattedDate = date ? new Date(date).toLocaleString('de-DE') : '-';
+
+        const listItems = [
+            `<li><strong>Kleidung:</strong> ${params.get('items') || '-'}</li>`,
+            `<li><strong>Zielregion:</strong> ${params.get('region') || '-'}</li>`,
+            `<li><strong>Datum & Uhrzeit:</strong> ${formattedDate}</li>`,
+            `<li><strong>Übergabeart:</strong> ${params.get('mode') === 'abholung' ? 'Abholung' : 'Übergabe'}</li>`
+        ];
+
+        // Wenn Abholung gewählt wurde, auch Adresse anzeigen
+        if (params.get('mode') === 'abholung') {
+            const street = params.get('street') || '-';
+            const plz = params.get('plz') || '-';
+            const city = params.get('city') || '-';
+            listItems.push(`<li><strong>Abholadresse:</strong> ${street}, ${plz} ${city}</li>`);
         }
-        return response.json();
-      })
-      .then(data => {
-        const tbody = document.querySelector('#donationTable tbody');
-        data.forEach(entry => {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${entry.name}</td>
-            <td>${entry.email}</td>
-            <td>${entry.items}</td>
-            <td>${entry.region}</td>
-            <td>${new Date(entry.timestamp).toLocaleString('de-DE')}</td>
-          `;
-          tbody.appendChild(row);
-        });
-      })
-      .catch(error => {
-        console.error('Fehler beim Laden der donations.json:', error);
-        document.querySelector('#donationTable').insertAdjacentHTML('afterend',
-          '<p style="color: red;">Die Spendenliste konnte nicht geladen werden.</p>');
-      });
-  </script>
+
+        // Zusammenfassung in HTML einfügen
+        summary.innerHTML = listItems.join('');
+    </script>
 </body>
 </html>

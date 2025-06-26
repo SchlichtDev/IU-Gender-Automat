@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Pascal Schlicht",
+    "email": "pascalschlicht.ps@gmail.com",
+    "items": "gutt",
+    "region": "Asien",
+    "mode": "abholung",
+    "timestamp": "2025-06-26T16:21:46.698Z",
+    "address": {
+      "street": "Annastr. 10, Stadtfeld Ost",
+      "plz": "39108",
+      "city": "Magdeburg"
+    }
+  },
+  {
+    "name": "Pascal Schlicht",
+    "email": "pascalschlicht.ps@gmail.com",
+    "items": "test",
+    "region": "Europa",
+    "mode": "abholung",
+    "timestamp": "2025-06-26T16:23:30.827Z",
+    "address": {
+      "street": "Annastr. 10, Stadtfeld Ost",
+      "plz": "39108",
+      "city": "Magdeburg"
+    }
+  },
+  {
+    "name": "Pascal Schlicht",
+    "email": "pascalschlicht.ps@gmail.com",
+    "items": "test",
+    "region": "Europa",
+    "mode": "abholung",
+    "timestamp": "2025-06-26T16:24:28.984Z",
+    "address": {
+      "street": "Annastr. 10, Stadtfeld Ost",
+      "plz": "39108",
+      "city": "Magdeburg"
+    }
+  },
+  {
+    "name": "Pascal Schlicht",
+    "email": "pascalschlicht.ps@gmail.com",
+    "items": "test",
+    "region": "Europa",
+    "mode": "abholung",
+    "timestamp": "2025-06-26T16:24:41.722Z",
+    "address": {
+      "street": "Annastr. 10, Stadtfeld Ost",
+      "plz": "39108",
+      "city": "Magdeburg"
+    }
+  },
+  {
+    "name": "Pascal Schlicht",
+    "email": "pascalschlicht.ps@gmail.com",
+    "items": "test",
+    "region": "Europa",
+    "mode": "abholung",
+    "timestamp": "2025-06-26T16:26:11.515Z",
+    "address": {
+      "street": "Annastr. 10, Stadtfeld Ost",
+      "plz": "39108",
+      "city": "Magdeburg"
+    }
+  },
+  {
+    "name": "Pascal Schlicht",
+    "email": "pascalschlicht.ps@gmail.com",
+    "items": "test",
+    "region": "Europa",
+    "mode": "abholung",
+    "timestamp": "2025-06-26T16:27:34.719Z",
+    "address": {
+      "street": "Annastr. 10, Stadtfeld Ost",
+      "plz": "39108",
+      "city": "Magdeburg"
+    }
+  }
+]

@@ -1,52 +1,116 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Kleiderspende registrieren</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Kleiderspende registrieren</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="site-branding" style="display: flex; align-items: center; gap: 1rem;">
-      <a href="/">
-        <img src="images/logo.webp" alt="Logo Kleiderspenden" class="logo" style="height: 60px;">
-      </a>
-      <span class="title">IU Kleiderspenden Registrierung</span>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="/">Start</a></li>
-        <li><a href="/success.html">Spendenliste</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <h1>Kleiderspende registrieren</h1>
-    <form action="/register" method="post">
-      <label for="name">Name:</label><br>
-      <input type="text" id="name" name="name" required><br>
+    <!-- Header mit Logo und Navigation -->
+    <header>
+        <div class="site-branding">
+            <a href="/">
+                <img src="images/logo.jpg" alt="Logo Kleiderspenden" class="logo">
+            </a>
+            <span class="title">IU Kleiderspenden Registrierung</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Start</a></li>
+                <li><a href="/success.html">Meine Spende</a></li>
+            </ul>
+        </nav>
+    </header>
 
-      <label for="email">E-Mail:</label><br>
-      <input type="email" id="email" name="email" required><br>
+    <!-- Hauptinhalt mit Formular -->
+    <main>
+        <h1>Kleiderspende registrieren</h1>
 
-      <label for="items">Beschreibung der Kleidung:</label><br>
-      <textarea id="items" name="items" required></textarea><br>
+        <!-- Formular zur Erfassung der Spende -->
+        <form action="/register" method="post" onsubmit="return validateForm()">
 
-      <label for="region">Zielregion:</label><br>
-      <select id="region" name="region" required>
-        <option value="">Bitte wählen</option>
-        <option value="Region A">Region A</option>
-        <option value="Region B">Region B</option>
-        <option value="Region C">Region C</option>
-      </select><br>
+            <!-- Persönliche Angaben -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
 
-      <button type="submit">Spende registrieren</button>
-    </form>
-  </main>
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" name="email" required>
 
-  <footer>
-    <p><a href="/impressum.html">Impressum</a> &amp; <a href="/datenschutz.html">Datenschutzerklärung</a></p>
-  </footer>
+            <!-- Angaben zur Spende -->
+            <label for="items">Beschreibung der Kleidung:</label>
+            <textarea id="items" name="items" required></textarea>
+
+            <label for="region">Zielregion:</label>
+            <select id="region" name="region" required>
+                <option value="">Bitte wählen</option>
+                <option value="Asien">Indien</option>
+                <option value="Europa">Rumänien</option>
+                <option value="Afrika">Kambodscha</option>
+            </select>
+
+            <!-- Auswahl Übergabeart -->
+            <label>Übergabeart:</label>
+            <div class="radio-group">
+                <input type="radio" id="uebergabe" name="mode" value="übergabe" required>
+                <label for="uebergabe">Übergabe an Geschäftsstelle</label>
+            </div>
+            <div class="radio-group">
+                <input type="radio" id="abholung" name="mode" value="abholung">
+                <label for="abholung">Abholung durch Sammelfahrzeug</label>
+            </div>
+
+            <!-- Nur bei Abholung: Adresseingabe -->
+            <div id="addressFields" style="display: none;">
+                <label for="street">Straße & Hausnummer:</label>
+                <input type="text" id="street" name="street">
+
+                <label for="plz">Postleitzahl:</label>
+                <input type="text" id="plz" name="plz">
+
+                <label for="city">Ort:</label>
+                <input type="text" id="city" name="city">
+            </div>
+
+            <button type="submit">Spende registrieren</button>
+        </form>
+    </main>
+
+    <!-- Footer mit rechtlichen Links -->
+    <footer>
+        <p>
+            <a href="/impressum.html">Impressum</a> &amp;
+            <a href="/datenschutz.html">Datenschutzerklärung</a>
+        </p>
+    </footer>
+
+    <!-- JavaScript zur Formularlogik -->
+    <script>
+        // Ein-/Ausblenden der Adressfelder je nach Übergabeart
+        const modeRadios = document.querySelectorAll('input[name="mode"]');
+        const addressFields = document.getElementById('addressFields');
+
+        modeRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                addressFields.style.display = radio.value === 'abholung' ? 'block' : 'none';
+            });
+        });
+
+        // Validierung der PLZ bei Abholung
+        function validateForm() {
+            const selectedMode = document.querySelector('input[name="mode"]:checked')?.value;
+            const plz = document.getElementById('plz').value;
+
+            // Nur Abholadressen aus der gleichen PLZ-Region (z. B. 39...) erlaubt
+            if (selectedMode === 'abholung') {
+                if (!plz.startsWith('39')) {
+                    alert("Die Abholadresse liegt außerhalb des Einzugsgebiets (PLZ muss mit 39 beginnen).");
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
 </body>
 </html>
