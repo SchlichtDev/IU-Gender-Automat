@@ -1,0 +1,14 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 2em;
+}
+label {
+  font-weight: bold;
+}
+input, textarea, select {
+  width: 300px;
+  margin-bottom: 1em;
+}
+button {
+  padding: 0.5em 1em;
+}
