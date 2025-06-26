@@ -1,6 +1,26 @@
 body {
   font-family: Arial, sans-serif;
   margin: 2em;
+  margin: 0;
+}
+header, footer {
+  background-color: #f0f0f0;
+  padding: 1em 2em;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1em;
+}
+main {
+  padding: 2em;
+}
+footer {
+  font-size: 0.8em;
+  text-align: center;
+  color: #666;
 }
 label {
   font-weight: bold;
