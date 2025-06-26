@@ -86,8 +86,13 @@
   </footer>
 
   <script>
-    fetch('/donations.json')
-      .then(response => response.json())
+    fetch('../docs/donations.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Datei konnte nicht geladen werden');
+        }
+        return response.json();
+      })
       .then(data => {
         const tbody = document.querySelector('#donationTable tbody');
         data.forEach(entry => {
@@ -97,7 +102,7 @@
             <td>${entry.email}</td>
             <td>${entry.items}</td>
             <td>${entry.region}</td>
-            <td>${entry.date || '-'}</td>
+            <td>${new Date(entry.timestamp).toLocaleString('de-DE')}</td>
           `;
           tbody.appendChild(row);
         });
