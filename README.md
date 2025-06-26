@@ -3,7 +3,6 @@
 Dies ist eine einfache Node.js Anwendung zur Registrierung von Kleiderspenden.
 Die "IU-Kleiderspenden Registrierung" ist eine Webanwendung zur einfachen und benutzerfreundlichen Erfassung von Kleiderspenden. Diese Anwendung wurde im Rahmen des Moduls **IPWA01-01** (Programmierung von Webanwendungsoberflächen) an der IU Internationale Hochschule als praktische Fallstudie erstellt.
 
-## Starten des Servers
 ## Warum Node.js?
 Node.js bietet eine schlanke und performante serverseitige JavaScript-Laufzeitumgebung. Dadurch lassen sich
 
