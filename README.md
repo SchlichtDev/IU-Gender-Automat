@@ -1,10 +1,9 @@
 # IU-Kleiderspenden Registrierung
 
-Dies ist eine einfache Node.js Anwendung zur Registrierung von Kleiderspenden.
 Die "IU-Kleiderspenden Registrierung" ist eine Webanwendung zur einfachen und benutzerfreundlichen Erfassung von Kleiderspenden. Diese Anwendung wurde im Rahmen des Moduls **IPWA01-01** (Programmierung von Webanwendungsoberflächen) an der IU Internationale Hochschule als praktische Fallstudie erstellt.
 
 ## Warum Node.js?
-Node.js bietet eine schlanke und performante serverseitige JavaScript-Laufzeitumgebung. Dadurch lassen sich
+Node.js bietet eine schlanke und performante serverseitige JavaScript-Laufzeitumgebung. Dadurch lassen sich:
 
 - HTTP-Server schnell umsetzen und bedienen,
 - Formulardaten einfach verarbeiten und in JSON-Dateien speichern sowie
@@ -25,6 +24,7 @@ Visual Studio Code wurde als Codeumgebung eingesetzt, da es eine intuitive Bedie
 
 Nodemon wurde während der Entwicklung verwendet, um Änderungen im Code live zu beobachten und den Entwicklungsserver automatisch neu zu starten. Dies erleichterte und beschleunigte den Entwicklungsprozess erheblich.
 
+## Starten des Servers
 
 ## Projektstruktur
 ```text
@@ -51,35 +51,13 @@ Stelle sicher, dass Node.js installiert ist. Danach kann der Server mit folgende
 ```bash
 node src/server.js
 ```
+
+Der Server startet standardmäßig auf Port 3000. Die Seite zur Registrierung ist dann unter [http://localhost:3000](http://localhost:3000) erreichbar.
 oder für Live-Reload während der Entwicklung:
 ```bash
 nodemon src/server.js
 ```
 Der Server läuft standardmäßig auf Port **3000** und die Registrierungsseite ist anschließend unter <http://localhost:3000> erreichbar.
-
-### Hosting und Bedienung
-Nachfolgend findest du eine kurze Anleitung, wie du die Anwendung ohne Entwickler-Tools wie *nodemon* auf deinem eigenen Rechner betreibst.
-
-1. **Node.js installieren**
-   - Lade das passende Installationspaket von [nodejs.org](https://nodejs.org/) herunter und folge den Anweisungen.
-2. **Projekt herunterladen**
-   - Klone dieses Repository oder lade den Quellcode als ZIP-Datei herunter und entpacke ihn.
-3. **Server starten**
-   - Navigiere im Terminal (über cd "Pfad aus Explorer kopieren. Es muss ich um IU-Kleiderspenden-Registrierung\src handeln." in das Projektverzeichnis und führe folgenden Befehl aus:
-   ```bash
-   node src/server.js
-   ```
-   - Der Server hört standardmäßig auf Port **3000**. Falls dieser Port bereits belegt ist, kannst du einen anderen Port mit der Umgebungsvariable `PORT` angeben:
-   ```bash
-   PORT=8080 node src/server.js
-   ```
-4. **Webseite aufrufen**
-   - Öffne deinen Browser und besuche <http://localhost:3000> (oder den gewählten Port).
-   - Trage die Daten im Formular ein und sende sie ab. Nach der Registrierung wirst du automatisch auf die Bestätigungsseite weitergeleitet.
-5. **Server stoppen**
-   - Mit `Strg + C` im Terminal beendest du den Server.
-
-Die erfassten Spenden werden in der Datei `docs/donations.json` gespeichert und können über den Endpunkt `/donations` im Browser eingesehen werden.
 
 ## Funktionsweise
 ### Formularregistrierung
