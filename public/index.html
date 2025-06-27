@@ -4,119 +4,149 @@
     <meta charset="UTF-8">
     <title>Kleiderspende registrieren</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Einbindung des CSS-Stylesheets für Layout und responsives Design -->
+
+    <!-- Eigenes Stylesheet -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Bootstrap CSS: modernes UI-Framework für responsives Layout -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Animate.css: optionale CSS-Animationen für visuelle Effekte -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 <body>
 
-    <!-- HEADER: Logo und Navigation -->
-    <header>
-        <div class="site-branding">
-            <a href="/">
-                <!-- Logo der Anwendung -->
-                <img src="images/logo.jpg" alt="Logo Kleiderspenden" class="logo">
-            </a>
-            <span class="title">IU Kleiderspenden Registrierung</span>
+    <!-- HEADER-BEREICH -->
+    <header class="bg-light py-3 mb-4 border-bottom">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <!-- Logo und Seitentitel -->
+                <a href="/">
+                    <img src="images/logo.jpg" alt="Logo Kleiderspenden" class="logo me-2" style="height: 50px;">
+                </a>
+                <span class="fs-4">IU Kleiderspenden Registrierung</span>
+            </div>
+            <!-- Navigation -->
+            <nav>
+                <a href="/" class="me-3">Start</a>
+                <a href="/success.html">Meine Spende</a>
+            </nav>
         </div>
-        <!-- Hauptnavigation -->
-        <nav>
-            <ul>
-                <li><a href="/">Start</a></li>
-                <li><a href="/success.html">Meine Spende</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <!-- HAUPTBEREICH: Formular zur Kleiderspendenregistrierung -->
+    <!-- HAUPTBEREICH: FORMULAR -->
     <main>
-        <h1>Kleiderspende registrieren</h1>
+        <div class="container mt-4">
+            <h1 class="animate__animated animate__fadeInDown mb-4">Kleiderspende registrieren</h1>
 
-        <!-- Formular: Sendet POST-Anfrage an /register -->
-        <!-- Das Attribut onsubmit aktiviert eine clientseitige Validierung via JavaScript -->
-        <form action="/register" method="post" onsubmit="return validateForm()">
+            <!-- Formular zur Spendenregistrierung -->
+            <!-- "onsubmit" ruft die JS-Validierung auf -->
+            <form action="/register" method="post" onsubmit="return validateForm()">
 
-            <!-- NAME: Pflichtfeld mit Pattern zur Vermeidung ungültiger Zeichen -->
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required
-                   pattern="^[a-zA-ZäöüÄÖÜß\s\-]{2,50}$"
-                   title="Bitte gib einen gültigen Namen ein. (Nur Buchstaben)">
+                <!-- Namensfeld mit Pattern zur Validierung -->
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required
+                       pattern="^[a-zA-ZäöüÄÖÜß\\s\\-]{2,50}$"
+                       title="Bitte gib einen gültigen Namen ein. (Nur Buchstaben)"
+                       class="form-control mb-3">
 
-            <!-- E-MAIL: Pflichtfeld mit HTML5-E-Mailvalidierung -->
-            <label for="email">E-Mail:</label>
-            <input type="email" id="email" name="email" required
-                   title="Bitte eine gültige E-Mail-Adresse eingeben.">
+                <!-- E-Mail-Feld mit HTML5-Validierung -->
+                <label for="email">E-Mail:</label>
+                <input type="email" id="email" name="email" required
+                       title="Bitte eine gültige E-Mail-Adresse eingeben."
+                       class="form-control mb-3">
 
-            <!-- KLEIDUNGSBESCHREIBUNG: Pflichtfeld mit Längenbeschränkung -->
-            <label for="items">Beschreibung der Kleidung:</label>
-            <textarea id="items" name="items" required minlength="5" maxlength="300"
-                      title="Bitte beschreibe die Kleidung (mind. 5 Zeichen)."></textarea>
+                <!-- Beschreibung der Kleidung -->
+                <label for="items">Beschreibung der Kleidung:</label>
+                <textarea id="items" name="items" required minlength="5" maxlength="300"
+                          title="Bitte beschreibe die Kleidung (mind. 5 Zeichen)."
+                          class="form-control mb-3"></textarea>
 
-            <!-- ZIELREGION: Auswahlfeld mit festen Optionen -->
-            <label for="region">Zielregion:</label>
-            <select id="region" name="region" required>
-                <option value="">Bitte wählen</option>
-                <option value="Asien">Indien</option>
-                <option value="Europa">Rumänien</option>
-                <option value="Afrika">Kambodscha</option>
-            </select>
+                <!-- Auswahl einer Zielregion -->
+                <label for="region">Zielregion:</label>
+                <select id="region" name="region" required class="form-select mb-3">
+                    <option value="">Bitte wählen</option>
+                    <option value="Asien">Indien</option>
+                    <option value="Europa">Rumänien</option>
+                    <option value="Afrika">Kambodscha</option>
+                </select>
 
-            <!-- ÜBERGABEART: Radiobuttons steuern Anzeige der Adressfelder -->
-            <label>Übergabeart:</label>
-            <div class="radio-group">
-                <input type="radio" id="uebergabe" name="mode" value="übergabe" required onchange="toggleAddress(false)">
-                <label for="uebergabe">Übergabe an Geschäftsstelle</label>
+                <!-- Radiobuttons zur Auswahl der Übergabeart -->
+                <label>Übergabeart:</label>
+                <div class="form-check mb-2">
+                    <input type="radio" id="uebergabe" name="mode" value="übergabe" required
+                           class="form-check-input" onchange="toggleAddress(false)">
+                    <label class="form-check-label" for="uebergabe">Übergabe an Geschäftsstelle</label>
+                </div>
+                <div class="form-check mb-3">
+                    <input type="radio" id="abholung" name="mode" value="abholung" required
+                           class="form-check-input" onchange="toggleAddress(true)">
+                    <label class="form-check-label" for="abholung">Abholung durch Fahrzeug</label>
+                </div>
 
-                <input type="radio" id="abholung" name="mode" value="abholung" required onchange="toggleAddress(true)">
-                <label for="abholung">Abholung durch Fahrzeug</label>
-            </div>
+                <!-- Adressfelder: nur sichtbar bei "Abholung" -->
+                <div id="addressFields" style="display:none;">
+                    <label for="street">Straße:</label>
+                    <input type="text" id="street" name="street" class="form-control mb-3">
 
-            <!-- ADRESSFELDER: Nur sichtbar bei Auswahl "Abholung" -->
-            <div id="addressFields" style="display:none;">
-                <label for="street">Straße:</label>
-                <input type="text" id="street" name="street">
+                    <label for="plz">Postleitzahl:</label>
+                    <input type="text" id="plz" name="plz"
+                           pattern="^[0-9]{5}$" title="Fünfstellige Postleitzahl"
+                           class="form-control mb-3">
 
-                <label for="plz">Postleitzahl:</label>
-                <input type="text" id="plz" name="plz"
-                       pattern="^[0-9]{5}$" title="Fünfstellige Postleitzahl">
+                    <label for="city">Stadt:</label>
+                    <input type="text" id="city" name="city" class="form-control mb-3">
+                </div>
 
-                <label for="city">Stadt:</label>
-                <input type="text" id="city" name="city">
-            </div>
-
-            <!-- ABSENDEN -->
-            <button type="submit">Spende registrieren</button>
-        </form>
+                <!-- Absenden-Button -->
+                <button type="submit" class="btn btn-primary">Spende registrieren</button>
+            </form>
+        </div>
     </main>
 
-    <!-- FOOTER: Verlinkung zu Impressum und Datenschutz -->
-    <footer>
+    <!-- FOOTER -->
+    <footer class="text-center mt-5 py-3 border-top">
         <a href="/Impressum.html">Impressum</a> | <a href="/datenschutz.html">Datenschutz</a>
     </footer>
 
-    <!-- JAVASCRIPT-BEREICH -->
+    <!-- Bootstrap JS Bundle (inkl. Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- SweetAlert2: moderne Hinweisfenster -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         /**
-         * Zeigt oder versteckt die Adressfelder abhängig von der Übergabeart
-         * @param {boolean} show - true: anzeigen, false: verstecken
+         * Zeigt oder versteckt die Adressfelder je nach Übergabeart.
+         * Wird bei onchange der Radiobuttons ausgelöst.
          */
         function toggleAddress(show) {
             document.getElementById('addressFields').style.display = show ? 'block' : 'none';
         }
 
         /**
-         * Führt zusätzliche clientseitige Prüfungen aus, bevor das Formular abgeschickt wird.
-         * Rückgabewert false verhindert das Absenden bei ungültigen Eingaben.
+         * Clientseitige Validierung der wichtigsten Felder.
+         * Verwendet SweetAlert2 für visuelle Rückmeldung.
          */
         function validateForm() {
             const name = document.getElementById("name").value.trim();
             const items = document.getElementById("items").value.trim();
 
             if (name.length < 2) {
-                alert("Der Name ist zu kurz.");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ungültiger Name',
+                    text: 'Der Name ist zu kurz.',
+                });
                 return false;
             }
+
             if (items.length < 5) {
-                alert("Die Beschreibung ist zu kurz.");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unvollständige Beschreibung',
+                    text: 'Die Beschreibung der Kleidung ist zu kurz.',
+                });
                 return false;
             }
 
