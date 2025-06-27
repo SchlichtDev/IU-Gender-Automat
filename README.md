@@ -18,13 +18,18 @@ Die Trennung in einzelne HTML-Dateien erhöht Übersichtlichkeit und Wartbarkeit
 
 Diese klare Struktur macht spätere Erweiterungen und Anpassungen leichter.
 
+## Eingesetzte Bibliotheken
+- **Bootstrap 5** sorgt für ein responsives und modernes Layout.
+- **SweetAlert2** stellt Fehlermeldungen in ansprechenden Hinweisfenstern dar.
+- **Animate.css** liefert dezente Animationen für einen professionellen Look.
+Darüber hinaus werden alle Eingaben serverseitig bereinigt, um HTML-Injektionen zu verhindern.
+
 ## Verwendete Entwicklungsumgebung und Tools
 
 Visual Studio Code wurde als Codeumgebung eingesetzt, da es eine intuitive Bedienung, umfassende Erweiterungen und eine integrierte Terminalfunktion bietet.
 
 Nodemon wurde während der Entwicklung verwendet, um Änderungen im Code live zu beobachten und den Entwicklungsserver automatisch neu zu starten. Dies erleichterte und beschleunigte den Entwicklungsprozess erheblich.
 
-## Starten des Servers
 
 ## Projektstruktur
 ```text
@@ -35,15 +40,18 @@ IU-Kleiderspenden-Registrierung
 │   ├── impressum.html
 │   ├── datenschutz.html
 │   ├── style.css
+│   ├── donations.json
 │   └── images
 │       └── logo.jpg
 ├── docs
-│   └── donations.json
+│   ├── donations.json
+│   └── images
+│       └── Logo.webp
 └── src
     └── server.js
 ```
-* `public` enthält Frontend-Dateien wie HTML, CSS und Bilder.
-* `docs` enthält gespeicherte Spenden im JSON-Format.
+* `public` enthält die HTML-Oberfläche, Stylesheets, Beispiel‑JSON und Bilder.
+* `docs` speichert die eingegangenen Spenden dauerhaft und enthält weitere Medien.
 * `src` enthält die serverseitige JavaScript-Datei.
 
 ## Starten des Servers
@@ -61,10 +69,10 @@ Der Server läuft standardmäßig auf Port **3000** und die Registrierungsseite 
 
 ## Funktionsweise
 ### Formularregistrierung
-Nutzer geben persönliche Daten, eine Beschreibung der Kleidung, die Zielregion und die Übergabeart an. Bei Abholung erfolgt zusätzlich eine PLZ-Prüfung (zulässig ist nur der PLZ-Bereich "39"). Nach erfolgreicher Registrierung erfolgt eine automatische Weiterleitung auf die persönliche Bestätigungsseite.
+Nutzer geben persönliche Daten, eine Beschreibung der Kleidung, die Zielregion und die Übergabeart an. Der Server validiert dabei Pflichtfelder und E-Mail-Adresse und bereinigt die Eingaben gegen HTML-Injektionen. Bei Abholung erfolgt zusätzlich eine PLZ-Prüfung (zulässig ist nur der PLZ-Bereich "39"). Nach erfolgreicher Registrierung erfolgt eine automatische Weiterleitung auf die persönliche Bestätigungsseite.
 
 ### Speicherung der Spenden
-Alle Spenden werden in `docs/donations.json` gespeichert und können darüber hinaus über den Endpunkt `/donations` abgerufen werden.
+Alle Spenden werden in `docs/donations.json` gespeichert und können dort bei Bedarf eingesehen werden.
 
 ## Erstellungsschritte (Dokumentation des Prozesses)
 1. **Konzeption** – Anforderungen festgelegt und Entscheidung für Node.js getroffen
